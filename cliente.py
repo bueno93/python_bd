@@ -1,18 +1,14 @@
 from conexao import conecta_db
 
+def opcao_menu():
+    print ("|---------------------------------------------------------------------------------------| ")
+    print ("|                             Cadastro                                                  | ")
+    print ("|---------------------------------------------------------------------------------------| ")
+    print ("| 1  - Listar | 2 - Consultar por ID | 3 - Inserir 4 - Alterar | 5 - Deletar | 6 - Sair | ")
+    print ("|---------------------------------------------------------------------------------------| ")
+
 def menu_cliente():
-
-
-    print ("|--------------------------------------------------|")
-    print ("|              Cadastro de cliente                 | ")
-    print ("|--------------------------------------------------| ")
-    print ("|              1  - Listar Clientes                | ")
-    print ("|              2  - Consultar um CLiente(id)       | ")
-    print ("|              3  - Inserir cliente                | ")
-    print ("|              4  - Alterar                        | ")
-    print ("|              5  - Deletar                        | ")
-    print ("|              6  - Sair                           | ")
-    print ("|--------------------------------------------------| ")
+    opcao_menu()
 
     while True: 
         opcao = input("Escolha uma opção: ")
@@ -22,14 +18,21 @@ def menu_cliente():
             listar(conexao) 
         elif opcao =="2":
             listar(conexao)
-            consultar_cliente_por_id(conexao)       
+            consultar_cliente_por_id(conexao)  
+            opcao_menu()     
         elif opcao =="3":
             inserir_clientes(conexao)
             listar(conexao) 
+            opcao_menu()
         elif opcao =="4":
             print ("Alterar clientes ")
+            listar(conexao)
+            alterar_cliente(conexao)
+            opcao_menu()
         elif opcao =="5":
-            print ("Deletar clientes ")                
+            listar(conexao)
+            deletar_cliente(conexao)
+            opcao_menu()              
         elif opcao =="6":
             print ("Sair")  
             break  
@@ -65,6 +68,25 @@ def inserir_clientes(conexao) :
     sql_insert = "insert into cliente(nome) values ('" + nome + "')"
     cursor.execute(sql_insert)
     conexao.commit()
+
+def alterar_cliente(conexao):
+    print("Alterarando o Cliente")
+    cursor = conexao.cursor()
+    id = input("Digite o ID: ")
+    nome = input("Nome: ")
+    sql_update = "update cliente set nome = '" + nome + "' where id = " + id
+    cursor.execute(sql_update)
+    conexao.commit()
+
+def deletar_cliente(conexao):
+    print("Deletando o Cliente")
+    cursor = conexao.cursor()
+    id = input("Digite o ID: ")
+    sql_delete = "delete from cliente where id = " + id
+    cursor.execute(sql_delete)
+    conexao.commit()
+
+
     
 
 
