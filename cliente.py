@@ -1,14 +1,8 @@
 from conexao import conecta_db
+from menu import opcao_menu
 
-def opcao_menu():
-    print ("|---------------------------------------------------------------------------------------| ")
-    print ("|                             Cadastro                                                  | ")
-    print ("|---------------------------------------------------------------------------------------| ")
-    print ("| 1  - Listar | 2 - Consultar por ID | 3 - Inserir 4 - Alterar | 5 - Deletar | 6 - Sair | ")
-    print ("|---------------------------------------------------------------------------------------| ")
-
-def menu_cliente():
-    opcao_menu()
+def menu_cliente(titulo):
+    opcao_menu(titulo)
 
     while True: 
         opcao = input("Escolha uma opção: ")
@@ -19,7 +13,7 @@ def menu_cliente():
         elif opcao =="2":
             listar(conexao)
             consultar_cliente_por_id(conexao)  
-            opcao_menu()     
+            opcao_menu(titulo)     
         elif opcao =="3":
             inserir_clientes(conexao)
             listar(conexao) 
@@ -28,11 +22,11 @@ def menu_cliente():
             print ("Alterar clientes ")
             listar(conexao)
             alterar_cliente(conexao)
-            opcao_menu()
+            opcao_menu(titulo)
         elif opcao =="5":
             listar(conexao)
             deletar_cliente(conexao)
-            opcao_menu()              
+            opcao_menu(titulo)              
         elif opcao =="6":
             print ("Sair")  
             break  
