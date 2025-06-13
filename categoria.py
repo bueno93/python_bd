@@ -4,7 +4,6 @@ from menu import opcao_menu
  
 
 
-opcao_menu()
 
 def menu_categoria(titulo):
     opcao_menu(titulo)
@@ -15,8 +14,7 @@ def menu_categoria(titulo):
 
         if opcao == "1":
             listar(conexao)
-            opcao_menu(titulo)
-
+         
         elif opcao =="2":
             consultar_categoria_por_id(conexao)
             opcao_menu(titulo)
