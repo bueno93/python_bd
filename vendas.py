@@ -1,4 +1,5 @@
 from conexao import conecta_db
+from datetime import datetime
 
 
 def menu_vendas():
@@ -28,5 +29,7 @@ def consultar_vendas():
    print("Nao implementado")
 
 def inserir_vendas():
-   print("Nao implementado")
-           
+   id_cliente = input("Digite o ID do Cliente")
+   data_venda = datetime.now()
+   numero = 0
+   valor_venda = 0        
